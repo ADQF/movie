@@ -16,5 +16,5 @@
 class MoviePipeline(object):
     def process_item(self, item, spider):
         with open('my_meiju.txt', 'a', encoding='utf_8') as f:
-            f.write(str(item.name) + '\n')
+            f.write(str(item['name']) + '\n')
         return item

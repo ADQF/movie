@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
+from movie.items import MovieItem
 # //ul[@class="top-list  fn-clear"]/li/h5/text()
 
 class MeijuSpider(scrapy.Spider):
@@ -17,10 +18,9 @@ class MeijuSpider(scrapy.Spider):
         #
         for movie in movie_list:
             # 表示在字标签基础上继续解析
-            movie.xpath('./h5/text()').extract_first()
+            name = movie.xpath('./h5/a/text()').extract_first()
 
             item = MovieItem()
-            item.name = name
-            yield iltm
+            item['name'] = name
+            yield item
 
-        pass
